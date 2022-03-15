@@ -11,13 +11,15 @@ interface Props {
 }
 
 class DomainFilter extends React.Component<Props, State> {
+
+  state: State = {
+    countries: [],
+    classifications: [],
+    subClassifications: []
+  };
+
   componentDidMount() {
-    const { domains } = this.props
-    this.state = {
-      countries: [],
-      classifications: [],
-      subClassifications: []
-    }
+    const { domains } = this.props;
 
     for (let i = 0; i < domains.length; i++) {
       if (this.state.countries.indexOf(domains[i].substring(0, 2)) <= 0) {
@@ -44,11 +46,7 @@ class DomainFilter extends React.Component<Props, State> {
   }
 
   render() {
-    const { countries, classifications, subClassifications } = this.state || {
-      countries: [],
-      classifications: [],
-      subClassifications: []
-    };
+    const { countries, classifications, subClassifications } = this.state;
 
     return (<>
       <select name="countries" multiple>
